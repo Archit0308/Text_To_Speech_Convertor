@@ -1,0 +1,436 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(100deg, #D6FF7F, #00B3CC, #402565, #30BE96, #F40076, #DF98FA, #E233FF, #FF6B00, 
+  #F14658, #DC2537, #F06966, #FAD6A6, #ED7B84, #9055FF, #DF98FA, #9055FF, #CB5EEE, #4BE1EC, #2F80ED,
+  #B2FFDA, #9055FF, #13E2DA, #0B63F6, #003CC5, #000066, #6699FF, #737DFE, #FFCAC9, #FF0076, #590FB7, 
+  #F40076, #342711, #FA7CBB, #F14658);
+  background-size: 1800% 1800%;
+
+-webkit-animation: rainbow 18s ease infinite;
+-z-animation: rainbow 18s ease infinite;
+-o-animation: rainbow 18s ease infinite;
+  animation: rainbow 18s ease infinite;}
+
+@-webkit-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-moz-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+
+}
+@-o-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+
+}
+@keyframes rainbow { 
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+.bubbles{
+  position: absolute;
+  bottom: -120px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 70px;
+  width: 100%;
+  justify-content: space-around;
+}
+.bubbles span{
+  height: 60px;
+  width: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  animation: move 10s linear infinite;
+  position: relative;
+  overflow: hidden;
+}
+@keyframes move {
+  100%{
+    transform: translateY(-100vh);
+  }
+}
+.bubbles span.one{
+  animation-delay: 2.2s;
+  transform: scale(2.15)
+}
+.bubbles span.two{
+  animation-delay: 3.5s;
+  transform: scale(1.55)
+}
+.bubbles span.three{
+  animation-delay: 0.2s;
+  transform: scale(0.35)
+}
+.bubbles span.four{
+  animation-delay: 6s;
+  transform: scale(2.15)
+}
+.bubbles span.five{
+  animation-delay: 7s;
+  transform: scale(0.5)
+}
+.bubbles span.six{
+  animation-delay: 4s;
+  transform: scale(2.5)
+}
+.bubbles span.seven{
+  animation-delay: 3;
+  transform: scale(1.5)
+}
+.bubbles span:before{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 60px;
+  width: 40%;
+  transform: skew(45deg) translateX(150px);
+  background: rgba(255, 255, 255, 0.15);
+  animation: mirror 3s linear infinite;
+}
+@keyframes mirror {
+  100%{
+    transform: translateX(-450px);
+  }
+}
+.bubbles span.one:before{
+  animation-delay: 1.5s;
+}
+.bubbles span.two:before{
+  animation-delay: 3.5s;
+}
+.bubbles span.three:before{
+  animation-delay: 2.5s;
+}
+.bubbles span.four:before{
+  animation-delay: 7.5s;
+}
+.bubbles span.five:before{
+  animation-delay: 4.5s;
+}
+.bubbles span.six:before{
+  animation-delay: 0.5s;
+}
+.bubbles span.seven:before{
+  animation-delay: 6s;
+}
+
+.wrapper{
+  width: 370px;
+  padding: 25px 30px;
+  border-radius: 9px;
+  background:rgb(43, 41, 41);
+  box-shadow: 7px 7px 20px rgba(0,0,0,0.05); 
+  background: linear-gradient(-45deg, rgba(0,0,0,0.22), rgba(255,255,255,0.25));
+  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25), -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+  border-radius: 40px; 
+  position: relative;
+  overflow: hidden;
+  border-top: 1.5px solid rgba(255, 18, 18, 0.5);
+  border-right: 1.5px solid rgba(8, 238, 238, 0.5);
+  border-bottom: 1.5px solid rgba(57, 255, 20, 0.5);
+  border-left: 1.5px solid rgba(255, 255, 113, 0.5);
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  padding: 1em;
+}
+
+/* z-index: 12;
+  width: 360px;
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+}*/
+
+span {
+  position: absolute;
+  border-radius: 100vmax;
+}
+
+.top {
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    transparent 50%,
+    #F40076, #DF98FA
+  );
+}
+
+.bottom {
+  right: 0;
+  bottom: 0;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    #9055FF, #13E2DA,
+    transparent 50%
+  );
+}
+
+.right {
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 30%,
+    #DF98FA, #9055FF
+  );
+}
+
+.left {
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  height: 0;
+  background: linear-gradient(
+    180deg,
+    #2F80ED, #B2FFDA,
+       transparent 70%
+  );
+}
+
+.top {
+  animation: animateTop 5s ease-in-out infinite;
+}
+
+.bottom {
+  animation: animateBottom 5s ease-in-out infinite;
+}
+
+.right {
+  animation: animateRight 5s linear infinite;
+}
+
+.left {
+  animation: animateLeft 5s ease-in-out infinite;
+}
+
+@keyframes animateTop {
+  25% {
+    width: 100%;
+    opacity: 1;
+  }
+
+  30%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes animateBottom {
+  0%,
+  50% {
+    opacity: 0;
+    width: 0;
+  }
+
+  75% {
+    opacity: 1;
+    width: 100%;
+  }
+
+  76%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes animateRight {
+  0%,
+  25% {
+    opacity: 0;
+    height: 0;
+  }
+
+  50% {
+    opacity: 1;
+    height: 100%;
+  }
+
+  55%,
+  100% {
+    height: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes animateLeft {
+  0%,
+  75% {
+    opacity: 0;
+    bottom: 0;
+    height: 0;
+  }
+
+  100% {
+    opacity: 1;
+    height: 100%;
+  }
+}
+
+.wrapper header{
+  font-size: 28px;
+  font-weight: 500;
+  text-align: center;
+  color: white;
+}
+.wrapper form{
+  margin: 35px 0 20px;
+  color: white;
+}
+form .row{
+  display: flex;
+  margin-bottom: 20px;
+  flex-direction: column;
+}
+form .row label{
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+form .row:nth-child(2) label{
+  font-size: 17px;
+}
+form :where(textarea, select, button){ 
+  outline: none;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 5px;
+}
+
+form .row textarea{  /* part where we have to write*/
+  resize: none;
+  height: 110px;
+  font-size: 16px;
+  padding: 8px 10px;
+  color: white;
+  background: linear-gradient(-45deg, rgba(0,0,0,0.22), rgba(255,255,255,0.25));
+  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25), -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+  border-radius: 5px; 
+}
+form .row textarea::-webkit-scrollbar{
+  width: 0px;
+}
+form .row .outer{
+  height: 48px;
+  display: flex;
+  /*padding: 0 10px;*/
+  align-items: center;
+  border-radius: 10px;
+  justify-content: center;
+ /* border: 1px solid #999; */
+}
+form .row select{ /*voice color*/
+font-size: 14px;
+background: transparent;
+color: black;
+box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25), -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+border-radius: 8px; 
+}
+
+form .row select::-webkit-scrollbar{
+  width: 8px;
+  color: black;
+}
+form .row select::-webkit-scrollbar-track{
+  background: rgb(0, 0, 0);
+}
+form .row select::-webkit-scrollbar-thumb{
+  background: rgba(136, 136, 136, 0.692);
+  border-radius: 8px;
+  border-right: 2px solid;
+}
+form button{
+  height: 52px;
+  color: #fff;
+  font-size: 17px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s ease;
+  position: relative; /* yaha se shuru hai */
+  border: none;
+  outline: none;
+  /*background: #675AFE;*/
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.5s;
+  background: linear-gradient(-45deg, rgba(0,0,0,0.22), rgba(255,255,255,0.25));
+  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25), -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+  border-radius: 50px; 
+}
+form button:hover{
+  background: linear-gradient(90deg, #F40076, #e095fd, #E233FF, #13E2DA, 
+  #0B63F6, #0c50ee, #FF0076, #6699FF, #FF0076);
+ background-size: 400%;
+}
+/* background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4, #fa7199, #f5ce62, #e43603, #fa7199);
+  background: linear-gradient(90deg, #F40076, #DF98FA, #E233FF, #13E2DA, #0B63F6, #003CC5, #FF0076, #6699FF, #FF0076, #590FB7);
+ */
+
+form button:before{
+  content: '';
+  position: absolute;
+  background: inherit;
+  top: -5px;
+  right: -5px;
+  bottom: -5px;
+  left: -5px;
+  border-radius: 50px;
+  filter: blur(20px);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+form button:hover:before{
+  opacity: 1;
+  z-index: -1;
+}
+button:hover{
+  z-index: 1;
+  animation: glow 8s linear infinite;
+}
+@keyframes glow {
+  0%{
+    background-position: 0%;
+  }
+  100%{
+    background-position: 400%;
+  }
+}
+
+@media(max-width: 400px){
+  .wrapper{
+    max-width: 345px;
+    width: 100%;
+  }
+}
