@@ -1,57 +1,72 @@
-const textarea = document.querySelector("textarea"),
-voiceList = document.querySelector("select"),
-speechBtn = document.querySelector("button");
+const fromText = document.querySelector(".from-text");
+const toText = document.querySelector(".to-text");
+const exchangeIcon = document.querySelector(".exchange");
+const selectTags = document.querySelectorAll("select");
+const icons = document.querySelectorAll(".row i");
+const translateBtn = document.querySelector("button");
 
-let synth = speechSynthesis,
-isSpeaking = true;
+selectTags.forEach((tag, id) => {
+  for (const countryCode in countries) {
+    const selected =
+      id === 0
+        ? countryCode === "en-GB"
+          ? "selected"
+          : ""
+        : countryCode === "hi-IN"
+        ? "selected"
+        : "";
+    const option = `<option ${selected} value="${countryCode}">${countries[countryCode]}</option>`;
+    tag.insertAdjacentHTML("beforeend", option);
+  }
+});
 
-voices();
+exchangeIcon.addEventListener("click", () => {
+  let tempText = fromText.value;
+  let tempLang = selectTags[0].value;
+  fromText.value = toText.value;
+  toText.value = tempText;
+  selectTags[0].value = selectTags[1].value;
+  selectTags[1].value = tempLang;
+});
 
-function voices(){
-    for(let voice of synth.getVoices()){
-        let selected = voice.name === "Google US English" ? "selected" : "";
-        let option = `<option value="${voice.name}" ${selected}>${voice.name} (${voice.lang})</option>`;
-        voiceList.insertAdjacentHTML("beforeend", option);
-    }
-}
+fromText.addEventListener("input", () => {
+  if (!fromText.value.trim()) {
+    toText.value = "";
+  }
+});
 
-synth.addEventListener("voiceschanged", voices);
-
-function textToSpeech(text){
-    let utterance = new SpeechSynthesisUtterance(text);
-    for(let voice of synth.getVoices()){
-        if(voice.name === voiceList.value){
-            utterance.voice = voice;
+translateBtn.addEventListener("click", () => {
+  const text = fromText.value.trim();
+  const translateFrom = selectTags[0].value;
+  const translateTo = selectTags[1].value;
+  if (!text) return;
+  toText.setAttribute("placeholder", "Translating...");
+  const apiUrl = `https://api.mymemory.translated.net/get?q=${text}&langpair=${translateFrom}|${translateTo}`;
+  fetch(apiUrl)
+    .then(res => res.json())
+    .then(data => {
+      const translation = data.responseData.translatedText;
+      toText.value = translation;
+      data.matches.forEach(match => {
+        if (match.id === 0) {
+          toText.value = match.translation;
         }
-    }
-    synth.speak(utterance);
-}
+      });
+      toText.setAttribute("placeholder", "Translation");
+    });
+});
 
-speechBtn.addEventListener("click", e =>{
-    e.preventDefault();
-    if(textarea.value !== ""){
-        if(!synth.speaking){
-            textToSpeech(textarea.value);
-        }
-        if(textarea.value.length > 80){
-            setInterval(()=>{
-                if(!synth.speaking && !isSpeaking){
-                    isSpeaking = true;
-                    speechBtn.innerText = "Convert To Speech";
-                }else{
-                }
-            }, 500);
-            if(isSpeaking){
-                synth.resume();
-                isSpeaking = false;
-                speechBtn.innerText = "Pause Speech";
-            }else{
-                synth.pause();
-                isSpeaking = true;
-                speechBtn.innerText = "Resume Speech";
-            }
-        }else{
-            speechBtn.innerText = "Convert To Speech";
-        }
+icons.forEach(icon => {
+  icon.addEventListener("click", ({ target }) => {
+    const text = target.id === "from" ? fromText.value : toText.value;
+    const lang = target.id === "from" ? selectTags[0].value : selectTags[1].value;
+    if (!text.trim()) return;
+    if (target.classList.contains("fa-copy")) {
+      navigator.clipboard.writeText(text);
+    } else {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = lang;
+      speechSynthesis.speak(utterance);
     }
+  });
 });
